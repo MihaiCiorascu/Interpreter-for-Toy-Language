@@ -1,13 +1,24 @@
 # Interpreter-for-Toy-Language
-Our mini interpreter uses three main structures:<br>
 
-## Execution Stack (ExeStack): 
-  a stack of statements to execute the currrent program<br>
+Our mini interpreter uses three main structures:
 
-## Table of Symbols (SymTable): 
-  a table which keeps the variables values<br>
+### Execution Stack (ExeStack)
+A stack of statements to execute the current program.
 
-## Output (Out): 
-  that keeps all the mesages printed by the toy program<br><br>
-All these three main structures denote the program state (PrgState). Our interpreter can execute multiple programs but for each of them use a different PrgState structures (that means different ExeStack, SymTable and Out structures).
-At the beginning, ExeStack contains the original program, and SymTable and Out are empty. After the evaluation has started, ExeStack contains the remaining part of the program that must be evaluated, SymTable contains the variables (from the variable declarations statements evaluated so far) with their assigned values, and Out contains the values printed so far.
+### Table of Symbols (SymTable)
+A table that keeps the variables' values.
+
+### Output (Out)
+Keeps all messages printed by the toy program.
+
+All these three main structures denote the program state (**PrgState**).  
+Our interpreter can execute multiple programs, each with a different **PrgState** (different **ExeStack**, **SymTable**, and **Out**).
+
+At the beginning:
+- **ExeStack** contains the original program.
+- **SymTable** and **Out** are empty.
+
+During evaluation:
+- **ExeStack** holds the remaining program to evaluate.
+- **SymTable** contains evaluated variables with their assigned values.
+- **Out** accumulates printed values.
