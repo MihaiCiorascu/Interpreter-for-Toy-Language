@@ -7,6 +7,7 @@ public interface MyIStack<T> {
     T pop() throws MyIStackException;
     T top() throws MyIStackException;
     void push(T v);
+
     boolean isEmpty();
     String toString();
 }

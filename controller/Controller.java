@@ -17,7 +17,7 @@ public class Controller {
     public ProgramState oneStep(ProgramState state) throws MyException {
         MyIStack<IStatement> stack = state.getStack();
         if (stack.isEmpty()) {
-            throw new MyException("Program state stack is empty");
+            throw new MyException("!EXCEPTION! Program state stack is empty");
         }
 
         IStatement currentStatement;

@@ -21,11 +21,6 @@ public class IfStatement implements IStatement{
     }
 
     @Override
-    public String toString(){
-        return "(IF(" + this.expression.toString() + ") THEN (" + this.thenStatement.toString() + ") ELSE (" + this.elseStatement.toString() + "))";
-    }
-
-    @Override
     public ProgramState execute(ProgramState state) throws MyException {
         MyIDictionary<String, IValue> dict = state.getSymTable();
         IValue value;
@@ -36,7 +31,7 @@ public class IfStatement implements IStatement{
         }
 
         if (!value.getType().equals(new BoolType())){
-            throw new MyException("Invalid expression in if statement");
+            throw new MyException("!EXCEPTION! Invalid expression in if statement");
         }
 
         BoolValue v = (BoolValue) value;
@@ -47,6 +42,11 @@ public class IfStatement implements IStatement{
         }
 
         return state;
+    }
+
+    @Override
+    public String toString(){
+        return "(IF(" + this.expression.toString() + ") THEN (" + this.thenStatement.toString() + ") ELSE (" + this.elseStatement.toString() + "))";
     }
 
     @Override

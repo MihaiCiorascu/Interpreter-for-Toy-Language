@@ -43,6 +43,19 @@ public class Main {
                 new VariableExpression("v"))))));
     }
 
+    private static IStatement error1() {
+        return new CompoundStatement(new VarDeclStatement("a", new IntType()), new CompoundStatement(
+                new VarDeclStatement("b", new BoolType()), new AssignmentStatement("a", new VariableExpression("b"))));
+    }
+
+    private static IStatement error2() {
+        return new CompoundStatement(new VarDeclStatement("a", new IntType()), new CompoundStatement(
+                new VarDeclStatement("b", new IntType()), new CompoundStatement(new AssignmentStatement("b",
+                new ValueExpression(new IntValue(30))),
+                new CompoundStatement(new VarDeclStatement("c", new IntType()), new AssignmentStatement("c",
+                        new ArithmeticExpression('/', new VariableExpression("b"), new VariableExpression("c")))))));
+    }
+
     public static void main(String[] args) throws MyException {
         Scanner scanner = new Scanner(System.in);
         IStatement selectedProgram = null;
@@ -51,7 +64,9 @@ public class Main {
             System.out.println("1. int v; v=2; Print(v)");
             System.out.println("2. int a; int b; a=2+3*5; b=a+1; Print(b)");
             System.out.println("3. bool a; int v; a=true; (If a Then v=2 Else v=3); Print(v)");
-            System.out.println("\nSelect which program to execute (1-3)");
+            System.out.println("4. ERROR1: int a; bool b; a=b");
+            System.out.println("5. ERROR2: int a; int b; b=30; int c; c=b/c");
+            System.out.println("\nSelect which program to execute (1-5)");
 
             try{
                 int choice = scanner.nextInt();
@@ -64,6 +79,12 @@ public class Main {
                         break;
                     case 3:
                         selectedProgram = createExample3();
+                        break;
+                    case 4:
+                        selectedProgram = error1();
+                        break;
+                    case 5:
+                        selectedProgram = error2();
                         break;
                     default:
                         System.out.println("Invalid choice!");

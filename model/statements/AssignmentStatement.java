@@ -27,11 +27,6 @@ public class AssignmentStatement implements IStatement{
     }
 
     @Override
-    public String toString(){
-        return id + "=" + expression.toString();
-    }
-
-    @Override
     public ProgramState execute(ProgramState state) throws MyException {
         MyIDictionary<String, IValue> symTable = state.getSymTable();
 
@@ -46,21 +41,18 @@ public class AssignmentStatement implements IStatement{
                 if (value.getType().equals(symTable.lookup(id).getType()))
                     symTable.update(id, value);
                 else
-                    throw new MyException("Declared type of variable " + id + " and type of the assigned expression do not match");
+                    throw new MyException("!EXCEPTION! Declared type of variable '" + id + "' and type of the assigned expression do not match");
             } catch (MyIDictionaryException | MyException e){
                 throw new MyException(e.getMessage());
             }
-
-            IType typeId = (symTable.lookup(id)).getType();
-            if (value.getType().equals(typeId))
-                symTable.update(id, value);
-            else
-                throw new MyException(
-                        "Declared type of variable " + id + " and type of the assigned expression do not match");
-
         } else
-            throw new MyException("The used variable " + id + " was not declared before");
+            throw new MyException("!EXCEPTION! The used variable '" + id + "' was not declared before");
         return state;
+    }
+
+    @Override
+    public String toString(){
+        return id + "=" + expression.toString();
     }
 
     @Override

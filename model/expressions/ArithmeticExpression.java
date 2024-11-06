@@ -22,12 +22,12 @@ public class ArithmeticExpression implements IExpression{
         IValue v1, v2;
         v1 = e1.eval(table);
 
-        if (v1 == null) throw new MyException("First operand evaluation is null");
+        if (v1 == null) throw new MyException("!EXCEPTION! First operand evaluation is null");
 
         if(v1.getType().equals(new IntType())){
             v2 = e2.eval(table);
 
-            if (v2 == null) throw new MyException("Second operand evaluation is null");
+            if (v2 == null) throw new MyException("!EXCEPTION! Second operand evaluation is null");
 
             if (v2.getType().equals(new IntType())) {
                 IntValue i1 = (IntValue) v1;
@@ -41,14 +41,14 @@ public class ArithmeticExpression implements IExpression{
                 if (op == '-') return new IntValue(n1 - n2);
                 if (op == '*') return new IntValue(n1 * n2);
                 if (op == '/') {
-                    if (n2 == 0) throw new IExpressionException("Division by zero");
+                    if (n2 == 0) throw new IExpressionException("!EXCEPTION! Division by zero");
                     return new IntValue(n1 / n2);
                 } else
-                    throw new MyException("Invalid operator. Operator must be +, -, *, /");
+                    throw new MyException("!EXCEPTION! Invalid operator. Operator must be +, -, *, /");
             } else
-                throw new MyException("Second operand is not an integer");
+                throw new MyException("!EXCEPTION! Second operand is not an integer");
         } else
-            throw new MyException("First operand is not an integer");
+            throw new MyException("!EXCEPTION! First operand is not an integer");
     }
 
     @Override

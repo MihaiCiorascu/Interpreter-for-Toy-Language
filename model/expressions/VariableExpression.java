@@ -21,7 +21,7 @@ public class VariableExpression implements IExpression{
                 throw new MyException(e.getMessage());
             }
         } else {
-            throw new MyException("The variable " + this.id + " is not defined");
+            throw new MyException("!EXCEPTION! The variable " + this.id + " is not defined");
         }
     }
 

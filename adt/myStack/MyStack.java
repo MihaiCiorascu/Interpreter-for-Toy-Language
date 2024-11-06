@@ -15,14 +15,14 @@ public class MyStack<T> implements MyIStack<T> {
     @Override
     public T pop() throws MyIStackException {
         if(stack.isEmpty())
-            throw new MyIStackException("Cannot pop. Empty stack");
+            throw new MyIStackException("!EXCEPTION! Cannot pop. Empty stack");
         return stack.pop();
     }
 
     @Override
     public T top() throws MyIStackException {
         if(stack.isEmpty())
-            throw new MyIStackException("Cannot top. Empty stack");
+            throw new MyIStackException("!EXCEPTION! Cannot top. Empty stack");
         return stack.peek();
     }
 
@@ -39,7 +39,7 @@ public class MyStack<T> implements MyIStack<T> {
     @Override
     public String toString(){
         StringBuilder s = new StringBuilder();
-        for (T el: this.stack)
+        for (T el: this.stack.reversed())
             s.append(el).append("\n");
         return s.toString();
     }
