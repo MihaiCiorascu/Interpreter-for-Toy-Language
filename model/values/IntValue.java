@@ -5,10 +5,6 @@ import model.types.*;
 public class IntValue implements IValue {
     private int value;
 
-    public IntValue() {
-        this.value = 0;
-    }
-
     public IntValue(int defValue) {
         this.value = defValue;
     }
@@ -24,10 +20,7 @@ public class IntValue implements IValue {
 
     @Override
     public boolean equals(IValue other) {
-        if (other.getType().equals(this.getType())) {
-            return this.value == ((IntValue) other).getValue();
-        }
-        return false;
+        return other instanceof IntValue && ((IntValue) other).value == this.value;
     }
 
     @Override
@@ -38,10 +31,5 @@ public class IntValue implements IValue {
     @Override
     public IValue deepCopy(){
         return new IntValue(this.value);
-    }
-
-    @Override
-    public IValue defaultValue() {
-        return new IntValue(0);
     }
 }

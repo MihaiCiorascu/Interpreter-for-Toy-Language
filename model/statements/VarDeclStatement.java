@@ -19,9 +19,10 @@ public class VarDeclStatement implements IStatement {
     public ProgramState execute(ProgramState state) throws MyException {
         MyIDictionary<String, IValue> symTable = state.getSymTable();
         if (symTable.isDefined(this.varName)) {
-            throw new MyException("Variable " + varName + " already declared");
+            throw new MyException("!EXCEPTION! Variable '" + varName + "' already declared");
         }
         symTable.put(this.varName, this.type.defaultValue());
+
         return state;
     }
 

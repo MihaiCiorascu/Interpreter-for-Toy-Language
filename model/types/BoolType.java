@@ -13,7 +13,7 @@ public class BoolType implements IType {
     }
 
     @Override
-    public boolean equals(IType other) {
+    public boolean equals(Object other) {
         return other instanceof BoolType;
     }
 
@@ -24,7 +24,7 @@ public class BoolType implements IType {
 
     @Override
     public IValue defaultValue() {
-        return new BoolValue();
+        return new BoolValue(false);
     }
 }
 

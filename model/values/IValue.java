@@ -8,5 +8,4 @@ public interface IValue {
     public boolean equals(IValue other);
     public String toString();
     public IValue deepCopy();
-    public IValue defaultValue();
 }

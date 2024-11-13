@@ -17,7 +17,7 @@ public class Controller {
     public ProgramState oneStep(ProgramState state) throws MyException {
         MyIStack<IStatement> stack = state.getStack();
         if (stack.isEmpty()) {
-            throw new MyException("Program state stack is empty");
+            throw new MyException("!EXCEPTION! Program state stack is empty");
         }
 
         IStatement currentStatement;
@@ -31,10 +31,10 @@ public class Controller {
 
     public void allSteps() throws MyException {
         ProgramState currentState = repository.getCurrentPrg();
-        System.out.println(currentState);
+        repository.logPrgStateExec(currentState);
         while (!currentState.getStack().isEmpty()) {
             oneStep(currentState);
-            System.out.println(currentState);
+            repository.logPrgStateExec(currentState);
         }
     }
 }

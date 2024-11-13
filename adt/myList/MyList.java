@@ -24,7 +24,7 @@ public class MyList<T> implements MyIList<T> {
     @Override
     public T get(int index) throws MyIListException {
         if (index < 0 || index >= elements.size())
-            throw new MyIListException("Index out of bounds.");
+            throw new MyIListException("!EXCEPTION! Index out of bounds.");
         return elements.get(index);
     }
 

@@ -12,7 +12,7 @@ public class IntType implements IType{
     }
 
     @Override
-    public boolean equals(IType other) {
+    public boolean equals(Object other) {
         return other instanceof IntType;
     }
 
@@ -23,6 +23,6 @@ public class IntType implements IType{
 
     @Override
     public IValue defaultValue() {
-        return new IntValue();
+        return new IntValue(0);
     }
 }

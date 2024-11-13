@@ -51,10 +51,10 @@ public class LogicalExpression implements IExpression {
                 else
                     return new BoolValue(false);
             } else
-                throw new MyException("The right operand is not boolean value");
+                throw new MyException("!EXCEPTION! The right operand is not boolean value");
         }
         else
-            throw new MyException("The left operand is not boolean value");
+            throw new MyException("!EXCEPTION! The left operand is not boolean value");
     }
 
     @Override
@@ -67,4 +67,3 @@ public class LogicalExpression implements IExpression {
         return left.toString() + " " + operator + " " + right.toString();
     }
 }
-

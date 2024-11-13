@@ -27,7 +27,7 @@ public class MyDictionary<T, V> implements MyIDictionary<T, V> {
         if (isDefined(id)){
             return dictionary.get(id);
         } else {
-            throw new MyIDictionaryException("The key provided for lookup doesn't exist.");
+            throw new MyIDictionaryException("!EXCEPTION! The key provided for lookup doesn't exist.");
         }
     }
 
@@ -36,7 +36,7 @@ public class MyDictionary<T, V> implements MyIDictionary<T, V> {
         if (isDefined(id)){
             dictionary.put(id, val);
         } else {
-            throw new MyIDictionaryException("The key provided for update doesn't exist.");
+            throw new MyIDictionaryException("!EXCEPTION! The key provided for update doesn't exist.");
         }
     }
 

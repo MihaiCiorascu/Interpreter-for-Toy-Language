@@ -1,25 +1,23 @@
 package model;
 
+import adt.myDictionary.MyDictionary;
 import adt.myDictionary.MyIDictionary;
 import adt.myList.MyIList;
+import adt.myList.MyList;
 import adt.myStack.MyIStack;
+import adt.myStack.MyStack;
 import model.statements.IStatement;
 import model.values.IValue;
+import model.values.StringValue;
+
+import java.io.BufferedReader;
 
 public class ProgramState {
     MyIStack<IStatement> exeStack;
     MyIDictionary<String, IValue> symTable;
     MyIList<IValue> out;
     IStatement originalProgram;
-
-    public ProgramState(MyIStack<IStatement> exeStack, MyIDictionary<String, IValue> symTable, MyIList<IValue> out, IStatement prg) {
-        this.exeStack = exeStack;
-        this.symTable = symTable;
-        this.out = out;
-        this.originalProgram = prg.deepCopy();
-
-        exeStack.push(prg);
-    }
+    MyIDictionary<StringValue, BufferedReader> fileTable;
 
     public MyIStack<IStatement> getStack() {
         return exeStack;
@@ -33,16 +31,28 @@ public class ProgramState {
         return out;
     }
 
-    public IStatement getOriginalProgram() {
-        return originalProgram;
+    public MyIDictionary<StringValue, BufferedReader> getFileTable() {
+        return fileTable;
+    }
+
+    public ProgramState(MyIStack<IStatement> exeStack, MyIDictionary<String, IValue> symTable,
+                        MyIList<IValue> out, IStatement prg, MyIDictionary<StringValue, BufferedReader> fileTable) {
+        this.exeStack = exeStack;
+        this.symTable = symTable;
+        this.out = out;
+        this.originalProgram = prg.deepCopy();
+        this.fileTable = fileTable;
+
+        exeStack.push(prg);
     }
 
     @Override
     public String toString() {
-        return "\nProgramState{\n" + "ExeStack: " + exeStack.toString() + "\n" +
-                "SymTable: " + symTable.toString()+ "\n" +
-                "Out: " + out.toString() + "\n" +
-                "OriginalProgram: " + originalProgram.toString() + "\n}" +
+        return "\nProgramState{\n" + "ExeStack:\n" + exeStack.toString() + "\n" +
+                "SymTable:\n" + symTable.toString()+ "\n" +
+                "Out:\n" + out.toString() + "\n" +
+                "OriginalProgram: " + originalProgram.toString() + "\n" +
+                "FileTable:\n"+ fileTable.toString() + "\n}" +
                 "\n--------------------------------------------------------------------------";
     }
 }
