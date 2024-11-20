@@ -36,10 +36,8 @@ public class MyList<T> implements MyIList<T> {
     @Override
     public String toString(){
         StringBuilder s = new StringBuilder();
-        s.append("Out[");
         for(T e: elements)
-            s.append(e.toString()).append(" ");
-        s.append("]");
+            s.append(e.toString()).append("\n");
         return s.toString();
     }
 }

@@ -13,6 +13,14 @@ public class CompoundStatement implements IStatement{
         this.second = second;
     }
 
+    public IStatement getFirst(){
+        return this.first;
+    }
+
+    public IStatement getSecond(){
+        return this.second;
+    }
+
     @Override
     public ProgramState execute(ProgramState state) throws MyException {
         MyIStack<IStatement> stack = state.getStack();
