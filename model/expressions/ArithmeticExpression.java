@@ -2,6 +2,7 @@ package model.expressions;
 
 
 import adt.myDictionary.MyIDictionary;
+import adt.myHeap.MyIHeap;
 import exceptions.IExpressionException;
 import exceptions.MyException;
 import model.types.*;
@@ -18,14 +19,14 @@ public class ArithmeticExpression implements IExpression{
         this.op = op;
     }
 
-    public IValue eval(MyIDictionary<String, IValue> table) throws MyException {
+    public IValue eval(MyIDictionary<String, IValue> symTable, MyIHeap<Integer, IValue> heap) throws MyException, IExpressionException {
         IValue v1, v2;
-        v1 = e1.eval(table);
+        v1 = e1.eval(symTable, heap);
 
         if (v1 == null) throw new MyException("!EXCEPTION! First operand evaluation is null");
 
         if(v1.getType().equals(new IntType())){
-            v2 = e2.eval(table);
+            v2 = e2.eval(symTable, heap);
 
             if (v2 == null) throw new MyException("!EXCEPTION! Second operand evaluation is null");
 

@@ -33,7 +33,7 @@ public class AssignmentStatement implements IStatement{
         if (symTable.isDefined(id)) {
             IValue value;
             try {
-                value = this.expression.eval(symTable);
+                value = this.expression.eval(symTable, state.getHeap());
             } catch (IExpressionException | MyException e) {
                 throw new MyException(e.getMessage());
             }
@@ -52,7 +52,7 @@ public class AssignmentStatement implements IStatement{
 
     @Override
     public String toString(){
-        return id + "=" + expression.toString();
+        return id + " = " + expression.toString();
     }
 
     @Override

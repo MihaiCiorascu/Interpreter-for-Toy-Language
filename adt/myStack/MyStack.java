@@ -1,5 +1,8 @@
 package adt.myStack;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 import exceptions.AdtExceptions.MyIStackException;
@@ -38,6 +41,11 @@ public class MyStack<T> implements MyIStack<T> {
     @Override
     public boolean isEmpty(){
         return stack.isEmpty();
+    }
+
+    @Override
+    public int size(){
+        return stack.size();
     }
 
     @Override

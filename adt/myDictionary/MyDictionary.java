@@ -1,5 +1,7 @@
 package adt.myDictionary;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -46,5 +48,10 @@ public class MyDictionary<T, V> implements MyIDictionary<T, V> {
         for (T key: dictionary.keySet())
             s.append(key).append(" -> ").append(dictionary.get(key)).append("\n");
         return s.toString();
+    }
+
+    @Override
+    public List<V> getValues() {
+        return new LinkedList<V>(dictionary.values());
     }
 }

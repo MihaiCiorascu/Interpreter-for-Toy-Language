@@ -1,10 +1,12 @@
 package controller;
 
+import adt.myHeap.MyIHeap;
 import adt.myStack.MyIStack;
 import exceptions.AdtExceptions.MyIStackException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.statements.IStatement;
+import model.values.IValue;
 import repository.IRepository;
 
 public class Controller {
@@ -35,6 +37,9 @@ public class Controller {
         while (!currentState.getStack().isEmpty()) {
             oneStep(currentState);
             repository.logPrgStateExec(currentState);
+
+            MyIHeap<Integer, IValue> heap = currentState.getHeap();
+            heap.setHeap(heap.safeGarbageCollector(currentState.getUsedAddresses(), heap.getHeap()));
         }
     }
 }

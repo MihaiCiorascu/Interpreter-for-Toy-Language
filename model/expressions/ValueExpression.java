@@ -1,5 +1,7 @@
 package model.expressions;
 
+import adt.myHeap.MyIHeap;
+import exceptions.IExpressionException;
 import model.values.*;
 import adt.myDictionary.*;
 import exceptions.MyException;
@@ -12,7 +14,7 @@ public class ValueExpression implements IExpression{
     }
 
     @Override
-    public IValue eval(MyIDictionary<String, IValue> table) throws MyException{
+    public IValue eval(MyIDictionary<String, IValue> symTable, MyIHeap<Integer, IValue> heap) throws MyException, IExpressionException {
         return this.value;
     }
 

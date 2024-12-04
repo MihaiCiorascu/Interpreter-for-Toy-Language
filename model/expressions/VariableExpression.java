@@ -1,6 +1,7 @@
 package model.expressions;
 
 import adt.myDictionary.MyIDictionary;
+import adt.myHeap.MyIHeap;
 import exceptions.AdtExceptions.MyIDictionaryException;
 import exceptions.MyException;
 import model.values.IValue;
@@ -13,10 +14,10 @@ public class VariableExpression implements IExpression{
     }
 
     @Override
-    public IValue eval(MyIDictionary<String, IValue> table) throws MyException {
-        if(table.isDefined(this.id)){
+    public IValue eval(MyIDictionary<String, IValue> symTable, MyIHeap<Integer, IValue> heap) throws MyException {
+        if(symTable.isDefined(this.id)){
             try{
-                return table.lookup(this.id);
+                return symTable.lookup(this.id);
             } catch (MyIDictionaryException e) {
                 throw new MyException(e.getMessage());
             }

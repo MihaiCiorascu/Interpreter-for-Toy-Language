@@ -40,7 +40,7 @@ public class Repository implements IRepository {
     }
 
     @Override
-    public ProgramState getCurrentPrg(){
+    public ProgramState getCurrentPrg() {
         return prgList.get(0);
     }
 

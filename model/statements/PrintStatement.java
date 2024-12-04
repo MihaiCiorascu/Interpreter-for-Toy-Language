@@ -22,7 +22,7 @@ public class PrintStatement implements IStatement{
     public ProgramState execute(ProgramState state) throws MyException {
         IValue value;
         try{
-            value = expression.eval(state.getSymTable());
+            value = expression.eval(state.getSymTable(), state.getHeap());
         } catch (IExpressionException | MyException e){
             throw new MyException(e.getMessage());
         }

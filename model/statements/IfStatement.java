@@ -1,6 +1,7 @@
 package model.statements;
 
 import adt.myDictionary.MyIDictionary;
+import adt.myHeap.MyIHeap;
 import exceptions.IExpressionException;
 import exceptions.MyException;
 import model.ProgramState;
@@ -23,9 +24,10 @@ public class IfStatement implements IStatement{
     @Override
     public ProgramState execute(ProgramState state) throws MyException {
         MyIDictionary<String, IValue> dict = state.getSymTable();
+        MyIHeap<Integer, IValue> heap = state.getHeap();
         IValue value;
         try{
-            value = expression.eval(dict);
+            value = expression.eval(dict, heap);
         } catch (IExpressionException | MyException e){
             throw new MyException(e.getMessage());
         }

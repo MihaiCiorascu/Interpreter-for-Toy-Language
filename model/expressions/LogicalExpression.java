@@ -1,6 +1,7 @@
 package model.expressions;
 
 import adt.myDictionary.MyIDictionary;
+import adt.myHeap.MyIHeap;
 import exceptions.IExpressionException;
 import exceptions.MyException;
 import model.types.BoolType;
@@ -23,17 +24,17 @@ public class LogicalExpression implements IExpression {
     }
 
     @Override
-    public IValue eval(MyIDictionary<String, IValue> table) throws MyException {
+    public IValue eval(MyIDictionary<String, IValue> symTable, MyIHeap<Integer, IValue> heap) throws MyException, IExpressionException {
         IValue leftValue, rightValue;
         try {
-            leftValue = left.eval(table);
+            leftValue = left.eval(symTable, heap);
         } catch (IExpressionException | MyException e) {
             throw new MyException(e.getMessage());
         }
 
         if (leftValue.getType().equals(new BoolType())) {
             try {
-                rightValue = right.eval(table);
+                rightValue = right.eval(symTable, heap);
             } catch (IExpressionException | MyException e) {
                 throw new MyException(e.getMessage());
             }
