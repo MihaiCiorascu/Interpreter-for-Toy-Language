@@ -1,6 +1,7 @@
 package model.statements;
 
 import exceptions.IExpressionException;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
@@ -18,22 +19,22 @@ public class WhileStatement implements IStatement {
     }
 
     @Override
-    public ProgramState execute(ProgramState state) throws MyException {
+    public ProgramState execute(ProgramState state) throws IStatementException {
         IValue value;
         try {
             value = expression.eval(state.getSymTable(), state.getHeap());
         } catch (IExpressionException | MyException e) {
-            throw new MyException(e.getMessage());
+            throw new IStatementException(e.getMessage());
         }
         if (!value.getType().equals(new BoolType())) {
-            throw new MyException("!EXCEPTION! Invalid expression in while statement");
+            throw new IStatementException("!EXCEPTION! Invalid expression in while statement");
         }
         BoolValue boolValue = (BoolValue) value;
         if (boolValue.getValue()) {
             state.getStack().push(this);
             state.getStack().push(statement);
         }
-        return state;
+        return null;
     }
 
     @Override

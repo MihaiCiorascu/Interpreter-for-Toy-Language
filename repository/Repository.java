@@ -1,6 +1,6 @@
 package repository;
 
-import adt.myList.MyIList;
+import exceptions.IRepositoryException;
 import exceptions.MyException;
 import model.ProgramState;
 
@@ -13,18 +13,23 @@ import java.util.Scanner;
 
 
 public class Repository implements IRepository {
-    private List<ProgramState> prgList;
+    private List<ProgramState> programStates;
     private String logFilePath;
+    private List<ProgramState> originalProgramStates;
 
     public Repository(ProgramState prg){
-        prgList = new ArrayList<>();
-        this.prgList.add(prg);
+        programStates = new ArrayList<>();
+        this.programStates.add(prg);
+        this.originalProgramStates = new ArrayList<>();
+        this.originalProgramStates.addAll(programStates);
     }
 
     public Repository(ProgramState prg, String logFilePath) {
-        prgList = new ArrayList<>();
-        this.prgList.add(prg);
+        programStates = new ArrayList<>();
+        this.programStates.add(prg);
         this.logFilePath = logFilePath;
+        this.originalProgramStates = new ArrayList<>();
+        this.originalProgramStates.add(prg);
     }
 
     public void setLogFilePath() {
@@ -36,16 +41,21 @@ public class Repository implements IRepository {
 
     @Override
     public void addPrg(ProgramState prg){
-        prgList.add(prg);
+        programStates.add(prg);
     }
 
     @Override
-    public ProgramState getCurrentPrg() {
-        return prgList.get(0);
+    public List<ProgramState> getPrgStates() {
+        return this.programStates;
     }
 
     @Override
-    public void logPrgStateExec(ProgramState prg) throws MyException {
+    public void setPrgStates(List<ProgramState> other) {
+        this.programStates = other;
+    }
+
+    @Override
+    public void logPrgStateExec(ProgramState prg) throws IRepositoryException {
         if (logFilePath == null) {
             setLogFilePath();
         }
@@ -53,7 +63,7 @@ public class Repository implements IRepository {
         try {
             logFile = new PrintWriter(new BufferedWriter(new FileWriter(logFilePath, true)));
         } catch (Exception e) {
-            throw new MyException("Error opening log file");
+            throw new IRepositoryException("Error opening log file");
         }
         logFile.println(prg.toString());
         logFile.close();

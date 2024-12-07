@@ -1,6 +1,7 @@
 package view.command;
 
 import controller.Controller;
+import exceptions.IControllerException;
 import exceptions.MyException;
 import model.statements.IStatement;
 
@@ -23,7 +24,7 @@ public class RunExample extends Command {
         try {
             controller.allSteps();
             hasBeenExecuted = true;
-        } catch (MyException e) {
+        } catch (IControllerException | InterruptedException e) {
             System.out.println(e.getMessage());
         }
     }

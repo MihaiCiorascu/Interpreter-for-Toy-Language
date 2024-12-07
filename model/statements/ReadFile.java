@@ -1,7 +1,8 @@
 package model.statements;
 
-import exceptions.AdtExceptions.MyIDictionaryException;
+import exceptions.AdtException;
 import exceptions.IExpressionException;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
@@ -24,40 +25,40 @@ public class ReadFile implements IStatement{
     }
 
     @Override
-    public ProgramState execute(ProgramState prg) throws MyException {
+    public ProgramState execute(ProgramState prg) throws IStatementException {
         if (!prg.getSymTable().isDefined(varName)) {
-            throw new MyException("!EXCEPTION! The variable " + varName + " is not defined");
+            throw new IStatementException("!EXCEPTION! The variable " + varName + " is not defined");
         }
 
         IValue varValue;
         try {
             varValue = prg.getSymTable().lookup(varName);
-        } catch (MyIDictionaryException e) {
-            throw new MyException(e.getMessage());
+        } catch (AdtException e) {
+            throw new IStatementException(e.getMessage());
         }
         if (!varValue.getType().equals(new IntType())) {
-            throw new MyException("!EXCEPTION! The variable " + varName + " is not an integer");
+            throw new IStatementException("!EXCEPTION! The variable " + varName + " is not an integer");
         }
 
         IValue fileNameValue;
         try {
             fileNameValue = exp.eval(prg.getSymTable(), prg.getHeap());
         } catch (IExpressionException | MyException e) {
-            throw new MyException(e.getMessage());
+            throw new IStatementException(e.getMessage());
         }
         if (!fileNameValue.getType().equals(new StringType())) {
-            throw new MyException("!EXCEPTION! The expression is not a string");
+            throw new IStatementException("!EXCEPTION! The expression is not a string");
         }
 
         StringValue filename = (StringValue) fileNameValue;
         BufferedReader br;
         try {
             br = prg.getFileTable().lookup(filename);
-        } catch (MyIDictionaryException e) {
-            throw new MyException(e.getMessage());
+        } catch (AdtException e) {
+            throw new IStatementException(e.getMessage());
         }
         if (br == null) {
-            throw new MyException("!EXCEPTION! The file " + filename.getValue() + " is not opened");
+            throw new IStatementException("!EXCEPTION! The file " + filename.getValue() + " is not opened");
         }
 
         try {
@@ -69,19 +70,19 @@ public class ReadFile implements IStatement{
                 try{
                     val = new IntValue(Integer.parseInt(line));
                 } catch (NumberFormatException e) {
-                    throw new MyException("!EXCEPTION! The file " + filename.getValue() + " contains a non-integer value");
+                    throw new IStatementException("!EXCEPTION! The file " + filename.getValue() + " contains a non-integer value");
                 }
             }
             try {
                 prg.getSymTable().update(varName, val);
-            } catch (MyIDictionaryException e) {
-                throw new MyException(e.getMessage());
+            } catch (AdtException e) {
+                throw new IStatementException(e.getMessage());
             }
         }  catch (IOException e) {
-            throw new MyException("!EXCEPTION! Error reading from file: " + e.getMessage());
+            throw new IStatementException("!EXCEPTION! Error reading from file: " + e.getMessage());
         }
 
-        return prg;
+        return null;
     }
 
     @Override

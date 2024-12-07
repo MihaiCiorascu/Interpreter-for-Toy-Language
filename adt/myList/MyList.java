@@ -1,6 +1,6 @@
 package adt.myList;
 
-import exceptions.AdtExceptions.MyIListException;
+import exceptions.AdtException;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -22,9 +22,9 @@ public class MyList<T> implements MyIList<T> {
     }
 
     @Override
-    public T get(int index) throws MyIListException {
+    public T get(int index) throws AdtException {
         if (index < 0 || index >= elements.size())
-            throw new MyIListException("!EXCEPTION! Index out of bounds.");
+            throw new AdtException("!EXCEPTION! Index out of bounds.");
         return elements.get(index);
     }
 

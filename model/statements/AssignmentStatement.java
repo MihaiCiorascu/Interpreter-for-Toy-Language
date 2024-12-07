@@ -1,8 +1,9 @@
 package model.statements;
 
 import adt.myDictionary.MyIDictionary;
-import exceptions.AdtExceptions.MyIDictionaryException;
+import exceptions.AdtException;
 import exceptions.IExpressionException;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.*;
@@ -27,7 +28,7 @@ public class AssignmentStatement implements IStatement{
     }
 
     @Override
-    public ProgramState execute(ProgramState state) throws MyException {
+    public ProgramState execute(ProgramState state) throws IStatementException {
         MyIDictionary<String, IValue> symTable = state.getSymTable();
 
         if (symTable.isDefined(id)) {
@@ -35,19 +36,19 @@ public class AssignmentStatement implements IStatement{
             try {
                 value = this.expression.eval(symTable, state.getHeap());
             } catch (IExpressionException | MyException e) {
-                throw new MyException(e.getMessage());
+                throw new IStatementException(e.getMessage());
             }
             try{
                 if (value.getType().equals(symTable.lookup(id).getType()))
                     symTable.update(id, value);
                 else
                     throw new MyException("!EXCEPTION! Declared type of variable '" + id + "' and type of the assigned expression do not match");
-            } catch (MyIDictionaryException | MyException e){
-                throw new MyException(e.getMessage());
+            } catch (AdtException | MyException e){
+                throw new IStatementException(e.getMessage());
             }
         } else
-            throw new MyException("!EXCEPTION! The used variable '" + id + "' was not declared before");
-        return state;
+            throw new IStatementException("!EXCEPTION! The used variable '" + id + "' was not declared before");
+        return null;
     }
 
     @Override

@@ -1,13 +1,13 @@
 package adt.myStack;
 
-import exceptions.AdtExceptions.MyIStackException;
+import exceptions.AdtException;
 import exceptions.MyException;
 
 import java.util.List;
 
 public interface MyIStack<T> {
-    T pop() throws MyIStackException;
-    T top() throws MyIStackException;
+    T pop() throws AdtException;
+    T top() throws AdtException;
     void push(T v);
     int size();
 

@@ -2,7 +2,7 @@ package model.expressions;
 
 import adt.myDictionary.MyIDictionary;
 import adt.myHeap.MyIHeap;
-import exceptions.AdtExceptions.MyIDictionaryException;
+import exceptions.AdtException;
 import exceptions.MyException;
 import model.values.IValue;
 
@@ -18,7 +18,7 @@ public class VariableExpression implements IExpression{
         if(symTable.isDefined(this.id)){
             try{
                 return symTable.lookup(this.id);
-            } catch (MyIDictionaryException e) {
+            } catch (AdtException e) {
                 throw new MyException(e.getMessage());
             }
         } else {

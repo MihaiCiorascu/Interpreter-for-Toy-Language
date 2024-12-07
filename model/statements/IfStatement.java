@@ -3,6 +3,7 @@ package model.statements;
 import adt.myDictionary.MyIDictionary;
 import adt.myHeap.MyIHeap;
 import exceptions.IExpressionException;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
@@ -22,18 +23,18 @@ public class IfStatement implements IStatement{
     }
 
     @Override
-    public ProgramState execute(ProgramState state) throws MyException {
+    public ProgramState execute(ProgramState state) throws IStatementException {
         MyIDictionary<String, IValue> dict = state.getSymTable();
         MyIHeap<Integer, IValue> heap = state.getHeap();
         IValue value;
         try{
             value = expression.eval(dict, heap);
         } catch (IExpressionException | MyException e){
-            throw new MyException(e.getMessage());
+            throw new IStatementException(e.getMessage());
         }
 
         if (!value.getType().equals(new BoolType())){
-            throw new MyException("!EXCEPTION! Invalid expression in if statement");
+            throw new IStatementException("!EXCEPTION! Invalid expression in if statement");
         }
 
         BoolValue v = (BoolValue) value;
@@ -43,7 +44,7 @@ public class IfStatement implements IStatement{
             state.getStack().push(elseStatement);
         }
 
-        return state;
+        return null;
     }
 
     @Override

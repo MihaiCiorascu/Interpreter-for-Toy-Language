@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
-import exceptions.AdtExceptions.MyIStackException;
+import exceptions.AdtException;
 import exceptions.MyException;
 
 public class MyStack<T> implements MyIStack<T> {
@@ -20,16 +20,16 @@ public class MyStack<T> implements MyIStack<T> {
     }
 
     @Override
-    public T pop() throws MyIStackException {
+    public T pop() throws AdtException {
         if(stack.isEmpty())
-            throw new MyIStackException("!EXCEPTION! Cannot pop. Empty stack");
+            throw new AdtException("!EXCEPTION! Cannot pop. Empty stack");
         return stack.pop();
     }
 
     @Override
-    public T top() throws MyIStackException {
+    public T top() throws AdtException {
         if(stack.isEmpty())
-            throw new MyIStackException("!EXCEPTION! Cannot top. Empty stack");
+            throw new AdtException("!EXCEPTION! Cannot top. Empty stack");
         return stack.peek();
     }
 

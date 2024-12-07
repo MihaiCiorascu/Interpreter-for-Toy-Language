@@ -1,6 +1,7 @@
 package model.statements;
 
 import adt.myStack.MyIStack;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 
@@ -22,13 +23,13 @@ public class CompoundStatement implements IStatement{
     }
 
     @Override
-    public ProgramState execute(ProgramState state) throws MyException {
+    public ProgramState execute(ProgramState state) throws IStatementException {
         MyIStack<IStatement> stack = state.getStack();
 
         stack.push(second);
         stack.push(first);
 
-        return state;
+        return null;
     }
 
     @Override

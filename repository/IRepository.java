@@ -1,10 +1,13 @@
 package repository;
 
-import exceptions.MyException;
+import exceptions.IRepositoryException;
 import model.ProgramState;
+
+import java.util.List;
 
 public interface IRepository {
     void addPrg(ProgramState prg);
-    ProgramState getCurrentPrg();
-    void logPrgStateExec(ProgramState prg) throws MyException;
+    void logPrgStateExec(ProgramState prg) throws IRepositoryException;
+    List<ProgramState> getPrgStates();
+    void setPrgStates(List<ProgramState> programStates);
 }

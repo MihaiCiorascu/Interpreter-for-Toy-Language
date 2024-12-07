@@ -1,6 +1,6 @@
 package adt.myHeap;
 
-import exceptions.AdtExceptions.MyIHeapException;
+import exceptions.AdtException;
 import model.values.IValue;
 
 import java.util.*;
@@ -15,9 +15,9 @@ public class MyHeap<K, V> implements MyIHeap<K, V>{
     }
 
     @Override
-    public V get(K key) throws MyIHeapException {
+    public V get(K key) throws AdtException {
         if (!this.isDefined(key)) {
-            throw new MyIHeapException("!EXCEPTION! The key provided for get doesn't exist.");
+            throw new AdtException("!EXCEPTION! The key provided for get doesn't exist.");
         }
         return this.heap.get(key);
     }
@@ -38,12 +38,12 @@ public class MyHeap<K, V> implements MyIHeap<K, V>{
     }
 
     @Override
-    public Map<K, V> getHeap() {
+    public Map<K, V> getContent() {
         return this.heap;
     }
 
     @Override
-    public void setHeap(Map<K, V> dictionary) {
+    public void setContent(Map<K, V> dictionary) {
         this.heap = dictionary;
     }
 
@@ -55,17 +55,6 @@ public class MyHeap<K, V> implements MyIHeap<K, V>{
     @Override
     public Integer allocate() {
         return this.firstFreeAddress++;
-    }
-
-    @Override
-    public Map<Integer, IValue> safeGarbageCollector(Set<Integer> usedAddresses, Map<Integer, IValue> heap) {
-        Map<Integer, IValue> newHeap = new HashMap<Integer, IValue>();
-        for (Integer key : heap.keySet()) {
-            if (usedAddresses.contains(key)) {
-                newHeap.put(key, heap.get(key));
-            }
-        }
-        return newHeap;
     }
 
     @Override

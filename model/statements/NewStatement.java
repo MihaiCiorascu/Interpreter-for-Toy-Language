@@ -1,7 +1,8 @@
 package model.statements;
 
-import exceptions.AdtExceptions.MyIDictionaryException;
+import exceptions.AdtException;
 import exceptions.IExpressionException;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
@@ -20,34 +21,35 @@ public class NewStatement implements IStatement{
     }
 
     @Override
-    public ProgramState execute(ProgramState state) throws MyException {
+    public ProgramState execute(ProgramState state) throws IStatementException {
         if (!state.getSymTable().isDefined(varName)) {
-            throw new MyException("!EXCEPTION! Variable '" + varName + "' not defined");
+            throw new IStatementException("!EXCEPTION! Variable '" + varName + "' not defined");
         }
         IType type;
         try {
             type = state.getSymTable().lookup(varName).getType();
-        } catch (MyIDictionaryException e) {
-            throw new MyException(e.getMessage());
+        } catch (AdtException e) {
+            throw new IStatementException(e.getMessage());
         }
         if (!(type instanceof RefType)) {
-            throw new MyException("!EXCEPTION! Variable '" + varName + "' is not a reference");
+            throw new IStatementException("!EXCEPTION! Variable '" + varName + "' is not a reference");
         }
 
         IValue value;
         try {
             value = expression.eval(state.getSymTable(), state.getHeap());
         } catch (IExpressionException | MyException e) {
-            throw new MyException(e.getMessage());
+            throw new IStatementException(e.getMessage());
         }
         if (!value.getType().equals(((RefType) type).getInner())) {
-            throw new MyException("Type mismatch: expected " + ((RefType) type).getInner().toString() +
+            throw new IStatementException("Type mismatch: expected " + ((RefType) type).getInner().toString() +
                     ", got " + value.getType().toString());
         }
 
         Integer newAddress = state.getHeap().allocate();
         state.getHeap().put(newAddress, value);
         state.getSymTable().put(varName, new RefValue(newAddress, value.getType()));
+
         return null;
     }
 

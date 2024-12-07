@@ -1,7 +1,8 @@
 package model.statements;
 
-import exceptions.AdtExceptions.MyIDictionaryException;
+import exceptions.AdtException;
 import exceptions.IExpressionException;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
@@ -19,40 +20,40 @@ public class WriteHeapStatement implements IStatement{
     }
 
     @Override
-    public ProgramState execute(ProgramState state) throws MyException {
+    public ProgramState execute(ProgramState state) throws IStatementException {
         if (!state.getSymTable().isDefined(this.varName)) {
-            throw new MyException("!EXCEPTION! Variable '" + varName + "' not defined");
+            throw new IStatementException("!EXCEPTION! Variable '" + varName + "' not defined");
         }
 
         IValue varValue;
         try{
             varValue = state.getSymTable().lookup(this.varName);
-        } catch (MyIDictionaryException e){
-            throw new MyException(e.getMessage());
+        } catch (AdtException e){
+            throw new IStatementException(e.getMessage());
         }
         if (!(varValue instanceof RefValue)) {
-            throw new MyException("!EXCEPTION! Variable '" + varName + "' is not a RefType");
+            throw new IStatementException("!EXCEPTION! Variable '" + varName + "' is not a RefType");
         }
 
         RefValue refValue = (RefValue) varValue;
         Integer address = refValue.getAddress();
 
         if (!state.getHeap().isDefined(address)) {
-            throw new MyException("!EXCEPTION! Address " + address + " is not defined in the heap");
+            throw new IStatementException("!EXCEPTION! Address " + address + " is not defined in the heap");
         }
 
         IValue value;
         try {
             value = expression.eval(state.getSymTable(), state.getHeap());
         } catch (IExpressionException | MyException e) {
-            throw new MyException(e.getMessage());
+            throw new IStatementException(e.getMessage());
         }
         if (!value.getType().equals(((RefType) refValue.getType()).getInner())) {
-            throw new MyException("Type of expression and type of variable do not match");
+            throw new IStatementException("Type of expression and type of variable do not match");
         }
 
         state.getHeap().put(address, value);
-        return state;
+        return null;
     }
 
     @Override

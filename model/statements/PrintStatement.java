@@ -1,6 +1,7 @@
 package model.statements;
 
 import exceptions.IExpressionException;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
@@ -19,15 +20,15 @@ public class PrintStatement implements IStatement{
     }
 
     @Override
-    public ProgramState execute(ProgramState state) throws MyException {
+    public ProgramState execute(ProgramState state) throws IStatementException {
         IValue value;
         try{
             value = expression.eval(state.getSymTable(), state.getHeap());
         } catch (IExpressionException | MyException e){
-            throw new MyException(e.getMessage());
+            throw new IStatementException(e.getMessage());
         }
         state.getOut().add(value);
-        return state;
+        return null;
     }
 
     @Override

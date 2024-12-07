@@ -2,7 +2,7 @@ package model.expressions;
 
 import adt.myDictionary.MyIDictionary;
 import adt.myHeap.MyIHeap;
-import exceptions.AdtExceptions.MyIHeapException;
+import exceptions.AdtException;
 import exceptions.IExpressionException;
 import exceptions.MyException;
 import model.values.IValue;
@@ -29,7 +29,7 @@ public class RefExp implements IExpression {
         }
         try {
             return heap.get(address);
-        } catch (MyIHeapException e) {
+        } catch (AdtException e) {
             throw new MyException(e.getMessage());
         }
     }

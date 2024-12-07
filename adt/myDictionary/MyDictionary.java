@@ -5,13 +5,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-import exceptions.AdtExceptions.MyIDictionaryException;
+import exceptions.AdtException;
 
 public class MyDictionary<T, V> implements MyIDictionary<T, V> {
     private Map<T, V> dictionary;
 
     public MyDictionary() {
         this.dictionary = new HashMap<>();
+    }
+
+    public MyDictionary(Map<T, V> dictionary) {
+        this.dictionary = dictionary;
+    }
+
+    @Override
+    public List<V> getValues() {
+        return new LinkedList<V>(dictionary.values());
+    }
+
+    @Override
+    public Map<T,V> getContent() {
+        return this.dictionary;
     }
 
     @Override
@@ -25,20 +39,20 @@ public class MyDictionary<T, V> implements MyIDictionary<T, V> {
     }
 
     @Override
-    public V lookup(T id) throws MyIDictionaryException {
+    public V lookup(T id) throws AdtException {
         if (isDefined(id)){
             return dictionary.get(id);
         } else {
-            throw new MyIDictionaryException("!EXCEPTION! The key provided for lookup doesn't exist.");
+            throw new AdtException("!EXCEPTION! The key provided for lookup doesn't exist.");
         }
     }
 
     @Override
-    public void update(T id, V val) throws MyIDictionaryException{
+    public void update(T id, V val) throws AdtException{
         if (isDefined(id)){
             dictionary.put(id, val);
         } else {
-            throw new MyIDictionaryException("!EXCEPTION! The key provided for update doesn't exist.");
+            throw new AdtException("!EXCEPTION! The key provided for update doesn't exist.");
         }
     }
 
@@ -51,7 +65,8 @@ public class MyDictionary<T, V> implements MyIDictionary<T, V> {
     }
 
     @Override
-    public List<V> getValues() {
-        return new LinkedList<V>(dictionary.values());
+    public MyIDictionary<T, V> deepCopy() {
+        Map<T, V> result = new HashMap<>(this.dictionary);
+        return new MyDictionary<>(result);
     }
 }

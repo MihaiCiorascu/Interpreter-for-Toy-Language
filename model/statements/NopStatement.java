@@ -1,12 +1,13 @@
 package model.statements;
 
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 
 public class NopStatement implements IStatement{
     @Override
-    public ProgramState execute(ProgramState state) throws MyException {
-        return state;
+    public ProgramState execute(ProgramState state) throws IStatementException {
+        return null;
     }
 
     @Override

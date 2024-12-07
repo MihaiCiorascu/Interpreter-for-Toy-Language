@@ -1,8 +1,9 @@
 package model.statements;
 
 import adt.myDictionary.MyIDictionary;
-import exceptions.AdtExceptions.MyIDictionaryException;
+import exceptions.AdtException;
 import exceptions.IExpressionException;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
@@ -20,37 +21,37 @@ public class CloseRFile implements IStatement{
     }
 
     @Override
-    public ProgramState execute(ProgramState prg) throws MyException {
+    public ProgramState execute(ProgramState prg) throws IStatementException {
         IValue value;
         try {
             value = exp.eval(prg.getSymTable(), prg.getHeap());
         } catch (IExpressionException | MyException e) {
-            throw new MyException(e.getMessage());
+            throw new IStatementException(e.getMessage());
         }
         if (!value.getType().equals(new StringType())) {
-            throw new MyException("!EXCEPTION! The expression is not a string");
+            throw new IStatementException("!EXCEPTION! The expression is not a string");
         }
         StringValue stringValue = (StringValue) value;
 
         BufferedReader br;
         try {
             br = prg.getFileTable().lookup(stringValue);
-        } catch (MyIDictionaryException e) {
-            throw new MyException(e.getMessage());
+        } catch (AdtException e) {
+            throw new IStatementException(e.getMessage());
         }
         if (br == null) {
-            throw new MyException("!EXCEPTION! The file" + stringValue.getValue() + " is not opened");
+            throw new IStatementException("!EXCEPTION! The file" + stringValue.getValue() + " is not opened");
         }
 
         try {
             br.close();
         } catch (Exception e) {
-            throw new MyException("!EXCEPTION! Error closing the file: " + e.getMessage());
+            throw new IStatementException("!EXCEPTION! Error closing the file: " + e.getMessage());
         }
 
         prg.getFileTable().put(stringValue, null);
 
-        return prg;
+        return null;
     }
 
     @Override

@@ -4,6 +4,7 @@ import model.statements.CompoundStatement;
 import model.statements.IStatement;
 
 public class BinaryTreeBuilder implements ITreeBuilder<IStatement>{
+
     @Override
     public MyBinaryTree<IStatement> buildTree(IStatement program) {
         if(!(program instanceof CompoundStatement)) {

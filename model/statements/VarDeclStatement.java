@@ -1,6 +1,7 @@
 package model.statements;
 
 import adt.myDictionary.MyIDictionary;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.types.IType;
@@ -16,14 +17,14 @@ public class VarDeclStatement implements IStatement {
     }
 
     @Override
-    public ProgramState execute(ProgramState state) throws MyException {
+    public ProgramState execute(ProgramState state) throws IStatementException {
         MyIDictionary<String, IValue> symTable = state.getSymTable();
         if (symTable.isDefined(this.varName)) {
-            throw new MyException("!EXCEPTION! Variable '" + varName + "' already declared");
+            throw new IStatementException("!EXCEPTION! Variable '" + varName + "' already declared");
         }
         symTable.put(this.varName, this.type.defaultValue());
 
-        return state;
+        return null;
     }
 
     @Override

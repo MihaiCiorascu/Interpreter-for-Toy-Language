@@ -1,6 +1,7 @@
 package model.statements;
 
 import exceptions.IExpressionException;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
@@ -20,31 +21,31 @@ public class OpenRFile implements IStatement{
     }
 
     @Override
-    public ProgramState execute(ProgramState prg) throws MyException {
+    public ProgramState execute(ProgramState prg) throws IStatementException {
         IValue value;
         try {
             value = exp.eval(prg.getSymTable(), prg.getHeap());
         } catch (IExpressionException | MyException e) {
-            throw new MyException(e.getMessage());
+            throw new IStatementException(e.getMessage());
         }
 
         if (!value.getType().equals(new StringType())) {
-            throw new MyException("!EXCEPTION! The expression is not a string");
+            throw new IStatementException("!EXCEPTION! The expression is not a string");
         }
         StringValue stringValue = (StringValue) value;
 
         if (prg.getFileTable().isDefined(stringValue)) {
-            throw new MyException("!EXCEPTION! The file " + stringValue.getValue() + " is already opened");
+            throw new IStatementException("!EXCEPTION! The file " + stringValue.getValue() + " is already opened");
         }
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(stringValue.getValue()));
             prg.getFileTable().put(stringValue, br);
         } catch (FileNotFoundException e) {
-            throw new MyException("!EXCEPTION! File not found: " + e.getMessage());
+            throw new IStatementException("!EXCEPTION! File not found: " + e.getMessage());
         }
 
-        return prg;
+        return null;
     }
 
     @Override
