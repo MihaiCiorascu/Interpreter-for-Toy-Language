@@ -180,6 +180,77 @@ public class Interpreter {
         );
     }
 
+    private static IStatement createExample11() {
+        // Ref(int) a; int v; new(a,10); fork(v=20; fork(wH(a, 40); print(rH(a));); print(v);); v=30; print(v); print(rH(a));
+        return new CompoundStatement(
+                new VarDeclStatement("a", new RefType(new IntType())),
+                new CompoundStatement(
+                        new VarDeclStatement("v", new IntType()),
+                        new CompoundStatement(
+                                new NewStatement("a", new ValueExpression(new IntValue(10))),
+                                new CompoundStatement(
+                                        new ForkStatement(
+                                                new CompoundStatement(
+                                                        new AssignmentStatement("v", new ValueExpression(new IntValue(20))),
+                                                        new CompoundStatement(
+                                                                new ForkStatement(
+                                                                        new CompoundStatement(
+                                                                                new WriteHeapStatement("a", new ValueExpression(new IntValue(40))),
+                                                                                new PrintStatement(new RefExp(new VariableExpression("a")))
+                                                                        )
+                                                                ),
+                                                                new PrintStatement(new VariableExpression("v"))
+                                                        )
+                                                )
+                                        ),
+                                        new CompoundStatement(
+                                                new AssignmentStatement("v", new ValueExpression(new IntValue(30))),
+                                                new CompoundStatement(
+                                                        new PrintStatement(new VariableExpression("v")),
+                                                        new PrintStatement(new RefExp(new VariableExpression("a"))
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+
+    private static IStatement createExample12() {
+        // string varf; varf="test.in"; openRFile(varf); fork(int varc; readFile(varf, varc); print(varc);); int varc; readFile(varf, varc); print(varc); closeRFile(varf);
+        return new CompoundStatement(
+                new VarDeclStatement("varf", new StringType()),
+                new CompoundStatement(
+                        new AssignmentStatement("varf", new ValueExpression(new StringValue("test.in"))),
+                        new CompoundStatement(
+                                new OpenRFile(new VariableExpression("varf")),
+                                new CompoundStatement(
+                                        new ForkStatement(
+                                                new CompoundStatement(
+                                                        new VarDeclStatement("varc", new IntType()),
+                                                        new CompoundStatement(
+                                                                new ReadFile(new VariableExpression("varf"), "varc"),
+                                                                new PrintStatement(new VariableExpression("varc"))
+                                                        )
+                                                )
+                                        ),
+                                        new CompoundStatement(
+                                                new VarDeclStatement("varc", new IntType()),
+                                                new CompoundStatement(
+                                                        new ReadFile(new VariableExpression("varf"), "varc"),
+                                                        new CompoundStatement(
+                                                                new PrintStatement(new VariableExpression("varc")),
+                                                                new CloseRFile(new VariableExpression("varf"))
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+
     private static ProgramState createProgram(IStatement originalProgram){
         MyIStack<IStatement> stack = new MyStack<>();
         MyIDictionary<String, IValue> symTable = new MyDictionary<>();
@@ -210,6 +281,8 @@ public class Interpreter {
         menu.addCommand(new RunExample("8", createExample8(), createController(createExample8(), "log8.txt")));
         menu.addCommand(new RunExample("9", createExample9(), createController(createExample9(), "log9.txt")));
         menu.addCommand(new RunExample("10", createExample10(), createController(createExample10(), "log10.txt")));
+        menu.addCommand(new RunExample("11", createExample11(), createController(createExample11(), "log11.txt")));
+        menu.addCommand(new RunExample("12", createExample12(), createController(createExample12(), "log12.txt")));
         menu.addCommand(new ExitCommand("0", "Exit"));
 
         menu.show();

@@ -29,7 +29,9 @@ public class Controller {
         Map<Integer, IValue> inUseFromSymTable = heap.entrySet().stream()
                 .filter(e -> usedAddresses.contains(e.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
         List<Integer> referentialValuesInHeap = this.getUsedAddresses(inUseFromSymTable.values());
+
         return Stream.concat(inUseFromSymTable.entrySet().stream(),
                         heap.entrySet().stream()
                                 .filter(e->referentialValuesInHeap.contains(e.getKey())))
@@ -55,12 +57,15 @@ public class Controller {
 
     void oneStepForAllPrograms(List<ProgramState> programList) throws IControllerException, InterruptedException {
         programList.forEach(prg -> repository.logPrgStateExec(prg));
+
         List<Callable<ProgramState>> callList = programList.stream()
                 .map((ProgramState p)-> (Callable<ProgramState>)(p::oneStep)).toList();
+
         List<ProgramState> newPrgList = executor.invokeAll(callList).stream()
                 .map(future->{try{return future.get();} catch (InterruptedException | ExecutionException | IRepositoryException | AdtException |
                                                                IStatementException | IExpressionException e)
                 {throw new IControllerException(e.toString());}}).filter(Objects::nonNull).toList();
+
         programList.addAll(newPrgList);
         programList.forEach(prg -> repository.logPrgStateExec(prg));
         repository.setPrgStates(programList);
@@ -73,6 +78,7 @@ public class Controller {
             List<IValue> symTables = prgList.stream().flatMap(programState -> programState.getSymTable().getContent().values().stream()).distinct().toList();
             Map<Integer, IValue> newHeap = this.safeGarbageCollector(this.getUsedAddresses(symTables), prgList.getFirst().getHeap().getContent());
             prgList.getFirst().getHeap().setContent(newHeap);
+
             this.oneStepForAllPrograms(prgList);
             prgList = removeCompletedPrg(repository.getPrgStates());
         }
