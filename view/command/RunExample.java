@@ -2,6 +2,8 @@ package view.command;
 
 import controller.Controller;
 import exceptions.IControllerException;
+import exceptions.IExpressionException;
+import exceptions.IStatementException;
 import exceptions.MyException;
 import model.statements.IStatement;
 

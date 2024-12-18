@@ -8,6 +8,7 @@ import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
 import model.types.BoolType;
+import model.types.IType;
 import model.values.BoolValue;
 import model.values.IValue;
 
@@ -45,6 +46,18 @@ public class IfStatement implements IStatement{
         }
 
         return null;
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws IStatementException{
+        IType typeExp = expression.typeCheck(typeEnv);
+        if (typeExp.equals(new BoolType())) {
+            this.thenStatement.typeCheck(typeEnv.deepCopy());
+            this.elseStatement.typeCheck(typeEnv.deepCopy());
+            return typeEnv;
+        }
+        else
+            throw new IStatementException("!If Statement error! The condition of IF has not the type bool");
     }
 
     @Override

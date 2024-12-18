@@ -12,8 +12,8 @@ public class BinaryTreeBuilder implements ITreeBuilder<IStatement>{
         }
 
         CompoundStatement compoundStatement = (CompoundStatement) program;
-        IStatement leftStmt = compoundStatement.getFirst();
-        IStatement rightStmt = compoundStatement.getSecond();
+        IStatement leftStmt = compoundStatement.getFirstStatement();
+        IStatement rightStmt = compoundStatement.getSecondStatement();
 
         MyBinaryTree<IStatement> leftSubTree = new MyBinaryTree<>(leftStmt);
         MyBinaryTree<IStatement> rightSubTree = new MyBinaryTree<>(rightStmt);

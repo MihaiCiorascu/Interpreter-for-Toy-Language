@@ -1,10 +1,12 @@
 package model.statements;
 
+import adt.myDictionary.MyIDictionary;
 import exceptions.IExpressionException;
 import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
+import model.types.IType;
 import model.types.StringType;
 import model.values.IValue;
 import model.values.StringValue;
@@ -13,18 +15,18 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-public class OpenRFile implements IStatement{
-    private IExpression exp;
+public class OpenRFileStatement implements IStatement{
+    private IExpression expression;
 
-    public OpenRFile(IExpression exp){
-        this.exp = exp;
+    public OpenRFileStatement(IExpression exp){
+        this.expression = exp;
     }
 
     @Override
     public ProgramState execute(ProgramState prg) throws IStatementException {
         IValue value;
         try {
-            value = exp.eval(prg.getSymTable(), prg.getHeap());
+            value = expression.eval(prg.getSymTable(), prg.getHeap());
         } catch (IExpressionException | MyException e) {
             throw new IStatementException(e.getMessage());
         }
@@ -49,12 +51,21 @@ public class OpenRFile implements IStatement{
     }
 
     @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws IStatementException{
+        IType typeExp = expression.typeCheck(typeEnv);
+        if (typeExp instanceof StringType)
+            return typeEnv;
+        else
+            throw new IStatementException("!Open File Statement error! Variable is not a String");
+    }
+
+    @Override
     public IStatement deepCopy() {
-        return new OpenRFile(exp.deepCopy());
+        return new OpenRFileStatement(expression.deepCopy());
     }
 
     @Override
     public String toString() {
-        return "openRFile(" + exp.toString() + ")";
+        return "openRFile(" + expression.toString() + ")";
     }
 }

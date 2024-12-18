@@ -1,11 +1,14 @@
 package model.statements;
 
+import adt.myDictionary.MyIDictionary;
 import exceptions.AdtException;
 import exceptions.IExpressionException;
 import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
+import model.types.BoolType;
+import model.types.IType;
 import model.types.IntType;
 import model.types.StringType;
 import model.values.IValue;
@@ -16,11 +19,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 public class ReadFile implements IStatement{
-    private IExpression exp;
+    private IExpression expression;
     private String varName;
 
     public ReadFile(IExpression exp, String varName) {
-        this.exp = exp;
+        this.expression = exp;
         this.varName = varName;
     }
 
@@ -42,7 +45,7 @@ public class ReadFile implements IStatement{
 
         IValue fileNameValue;
         try {
-            fileNameValue = exp.eval(prg.getSymTable(), prg.getHeap());
+            fileNameValue = expression.eval(prg.getSymTable(), prg.getHeap());
         } catch (IExpressionException | MyException e) {
             throw new IStatementException(e.getMessage());
         }
@@ -86,12 +89,26 @@ public class ReadFile implements IStatement{
     }
 
     @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws IStatementException{
+        IType typeVar = typeEnv.lookup(this.varName);
+        IType typeExp = expression.typeCheck(typeEnv);
+        if (typeVar instanceof IntType) {
+            if (typeExp instanceof StringType)
+                return typeEnv;
+            else
+                throw new IStatementException("!Read File Error! Expression is not of type String");
+        }
+        else
+            throw new IStatementException("!Read File Error! Variable is not of type Int");
+    }
+
+    @Override
     public IStatement deepCopy() {
-        return new ReadFile(exp.deepCopy(), varName);
+        return new ReadFile(expression.deepCopy(), varName);
     }
 
     @Override
     public String toString() {
-        return "readFile(" + exp.toString() + ", " + varName + ")";
+        return "readFile(" + expression.toString() + ", " + varName + ")";
     }
 }

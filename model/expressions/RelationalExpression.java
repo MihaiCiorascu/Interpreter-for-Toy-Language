@@ -4,6 +4,8 @@ import adt.myDictionary.MyIDictionary;
 import adt.myHeap.MyIHeap;
 import exceptions.IExpressionException;
 import exceptions.MyException;
+import model.types.BoolType;
+import model.types.IType;
 import model.types.IntType;
 import model.values.BoolValue;
 import model.values.IValue;
@@ -50,6 +52,21 @@ public class RelationalExpression implements IExpression{
             }
         }
         throw new MyException("!EXCEPTION! The operands are not integers");
+    }
+
+    @Override
+    public IType typeCheck(MyIDictionary<String, IType> typeEnv) throws IExpressionException {
+        IType type1, type2;
+        type1 = e1.typeCheck(typeEnv);
+        type2 = e2.typeCheck(typeEnv);
+
+        if(type1.equals(new IntType())) {
+            if (type2.equals(new IntType())) {
+                return new BoolType();
+            } else
+                throw new IExpressionException("!Relational Expression Error! Second operand is not an integer");
+        } else
+            throw new IExpressionException("!Relational Expression Error! First operand is not an integer");
     }
 
     @Override

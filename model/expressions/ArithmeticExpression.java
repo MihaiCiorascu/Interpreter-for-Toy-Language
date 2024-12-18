@@ -8,6 +8,8 @@ import exceptions.MyException;
 import model.types.*;
 import model.values.*;
 
+import java.lang.reflect.Type;
+
 public class ArithmeticExpression implements IExpression{
     IExpression e1;
     IExpression e2;
@@ -50,6 +52,22 @@ public class ArithmeticExpression implements IExpression{
                 throw new MyException("!EXCEPTION! Second operand is not an integer");
         } else
             throw new MyException("!EXCEPTION! First operand is not an integer");
+    }
+
+    @Override
+    public IType typeCheck(MyIDictionary<String, IType> typeEnv) throws IExpressionException {
+        IType type1, type2;
+        type1 = e1.typeCheck(typeEnv);
+        type2 = e2.typeCheck(typeEnv);
+        if (type1.equals(new IntType())) {
+            if (type2.equals(new IntType())) {
+                return new IntType();
+            }
+            else
+                throw  new IExpressionException("!Arithmetic Expression Error! Second operand is not an integer");
+        }
+        else
+            throw new IExpressionException("!Arithmetic Expression Error! First operand is not an integer");
     }
 
     @Override

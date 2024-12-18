@@ -1,10 +1,12 @@
 package model.statements;
 
+import adt.myDictionary.MyIDictionary;
 import exceptions.IExpressionException;
 import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
+import model.types.IType;
 import model.values.IValue;
 
 public class PrintStatement implements IStatement{
@@ -29,6 +31,12 @@ public class PrintStatement implements IStatement{
         }
         state.getOut().add(value);
         return null;
+    }
+
+    @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws IStatementException{
+        this.expression.typeCheck(typeEnv);
+        return typeEnv;
     }
 
     @Override

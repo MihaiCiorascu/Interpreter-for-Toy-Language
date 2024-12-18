@@ -5,6 +5,7 @@ import adt.myHeap.MyIHeap;
 import exceptions.IExpressionException;
 import exceptions.MyException;
 import model.types.BoolType;
+import model.types.IType;
 import model.values.BoolValue;
 import model.values.IValue;
 
@@ -13,13 +14,13 @@ enum LogicalOperator {
 }
 
 public class LogicalExpression implements IExpression {
-    private IExpression left;
-    private IExpression right;
+    private IExpression leftOperator;
+    private IExpression rightOperator;
     private LogicalOperator operator;
 
     public LogicalExpression(LogicalOperator operator, IExpression left, IExpression right){
-        this.left = left;
-        this.right = right;
+        this.leftOperator = left;
+        this.rightOperator = right;
         this.operator = operator;
     }
 
@@ -27,14 +28,14 @@ public class LogicalExpression implements IExpression {
     public IValue eval(MyIDictionary<String, IValue> symTable, MyIHeap<Integer, IValue> heap) throws MyException, IExpressionException {
         IValue leftValue, rightValue;
         try {
-            leftValue = left.eval(symTable, heap);
+            leftValue = leftOperator.eval(symTable, heap);
         } catch (IExpressionException | MyException e) {
             throw new MyException(e.getMessage());
         }
 
         if (leftValue.getType().equals(new BoolType())) {
             try {
-                rightValue = right.eval(symTable, heap);
+                rightValue = rightOperator.eval(symTable, heap);
             } catch (IExpressionException | MyException e) {
                 throw new MyException(e.getMessage());
             }
@@ -59,12 +60,27 @@ public class LogicalExpression implements IExpression {
     }
 
     @Override
+    public IType typeCheck(MyIDictionary<String, IType> typeEnv) throws IExpressionException {
+        IType type1, type2;
+        type1 = this.leftOperator.typeCheck(typeEnv);
+        type2 = this.rightOperator.typeCheck(typeEnv);
+
+        if(type1.equals(new BoolType())) {
+            if(type2.equals(new BoolType())) {
+                return new BoolType();
+            } else
+                throw new IExpressionException("!Logical Expression Error! The right operand is not a bool");
+        } else
+            throw new IExpressionException("!Logical Expression Error! The left operand is not a bool");
+    }
+
+    @Override
     public IExpression deepCopy(){
-        return new LogicalExpression(operator, left.deepCopy(), right.deepCopy());
+        return new LogicalExpression(operator, leftOperator.deepCopy(), rightOperator.deepCopy());
     }
 
     @Override
     public String toString() {
-        return left.toString() + " " + operator + " " + right.toString();
+        return leftOperator.toString() + " " + operator + " " + rightOperator.toString();
     }
 }

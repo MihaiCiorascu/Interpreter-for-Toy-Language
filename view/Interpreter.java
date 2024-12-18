@@ -6,6 +6,8 @@ import adt.myHeap.MyIHeap;
 import adt.myList.*;
 import adt.myStack.*;
 import controller.Controller;
+import exceptions.IExpressionException;
+import exceptions.IStatementException;
 import model.ProgramState;
 import model.expressions.*;
 import model.statements.*;
@@ -54,13 +56,13 @@ public class Interpreter {
         return new CompoundStatement(
                 new VarDeclStatement("varf", new StringType()),
                 new CompoundStatement(new AssignmentStatement("varf", new ValueExpression(new StringValue("test.in"))),
-                        new CompoundStatement(new OpenRFile(new VariableExpression("varf")),
+                        new CompoundStatement(new OpenRFileStatement(new VariableExpression("varf")),
                                 new CompoundStatement(new VarDeclStatement("varc", new IntType()),
                                         new CompoundStatement(new ReadFile(new VariableExpression("varf"), "varc"),
                                                 new CompoundStatement(new PrintStatement(new VariableExpression("varc")),
                                                         new CompoundStatement(new ReadFile(new VariableExpression("varf"), "varc"),
                                                                 new CompoundStatement(new PrintStatement(new VariableExpression("varc")),
-                                                                        new CloseRFile(new VariableExpression("varf"))))))))));
+                                                                        new CloseRFileStatement(new VariableExpression("varf"))))))))));
     }
 
 
@@ -85,11 +87,11 @@ public class Interpreter {
         return new CompoundStatement(
                 new VarDeclStatement("v", new RefType(new IntType())),
                 new CompoundStatement(
-                        new NewStatement("v", new ValueExpression(new IntValue(20))),
+                        new HeapNewStatement("v", new ValueExpression(new IntValue(20))),
                         new CompoundStatement(
                                 new VarDeclStatement("a", new RefType(new RefType(new IntType()))),
                                 new CompoundStatement(
-                                        new NewStatement("a", new VariableExpression("v")),
+                                        new HeapNewStatement("a", new VariableExpression("v")),
                                         new CompoundStatement(
                                                 new PrintStatement(new VariableExpression("v")),
                                                 new PrintStatement(new VariableExpression("a")))))));
@@ -100,15 +102,15 @@ public class Interpreter {
         return new CompoundStatement(
                 new VarDeclStatement("v", new RefType(new IntType())),
                 new CompoundStatement(
-                        new NewStatement("v", new ValueExpression(new IntValue(20))),
+                        new HeapNewStatement("v", new ValueExpression(new IntValue(20))),
                         new CompoundStatement(
                                 new VarDeclStatement("a", new RefType(new RefType(new IntType()))),
                                 new CompoundStatement(
-                                        new NewStatement("a", new VariableExpression("v")),
+                                        new HeapNewStatement("a", new VariableExpression("v")),
                                         new CompoundStatement(
-                                                new PrintStatement(new RefExp(new VariableExpression("v"))),
+                                                new PrintStatement(new RefExpression(new VariableExpression("v"))),
                                                 new PrintStatement(new ArithmeticExpression('+',
-                                                        new RefExp(new RefExp(new VariableExpression("a"))),
+                                                        new RefExpression(new RefExpression(new VariableExpression("a"))),
                                                         new ValueExpression(new IntValue(5)))))))));
     }
 
@@ -117,13 +119,13 @@ public class Interpreter {
         return new CompoundStatement(
                 new VarDeclStatement("v", new RefType(new IntType())),
                 new CompoundStatement(
-                        new NewStatement("v", new ValueExpression(new IntValue(20))),
+                        new HeapNewStatement("v", new ValueExpression(new IntValue(20))),
                         new CompoundStatement(
-                                new PrintStatement(new RefExp(new VariableExpression("v"))),
+                                new PrintStatement(new RefExpression(new VariableExpression("v"))),
                                 new CompoundStatement(
-                                        new WriteHeapStatement("v", new ValueExpression(new IntValue(30))),
+                                        new HeapWriteStatement("v", new ValueExpression(new IntValue(30))),
                                         new PrintStatement(new ArithmeticExpression('+',
-                                                new RefExp(new VariableExpression("v")),
+                                                new RefExpression(new VariableExpression("v")),
                                                 new ValueExpression(new IntValue(5))))))));
     }
 
@@ -132,14 +134,14 @@ public class Interpreter {
         return new CompoundStatement(
                 new VarDeclStatement("v", new RefType(new IntType())),
                 new CompoundStatement(
-                        new NewStatement("v", new ValueExpression(new IntValue(20))),
+                        new HeapNewStatement("v", new ValueExpression(new IntValue(20))),
                         new CompoundStatement(
                                 new VarDeclStatement("a", new RefType(new RefType(new IntType()))),
                                 new CompoundStatement(
-                                        new NewStatement("a", new VariableExpression("v")),
+                                        new HeapNewStatement("a", new VariableExpression("v")),
                                         new CompoundStatement(
-                                                new NewStatement("v", new ValueExpression(new IntValue(30))),
-                                                new PrintStatement(new RefExp(new RefExp(new VariableExpression("a")))))))));
+                                                new HeapNewStatement("v", new ValueExpression(new IntValue(30))),
+                                                new PrintStatement(new RefExpression(new RefExpression(new VariableExpression("a")))))))));
     }
 
     private static IStatement createExample9() {
@@ -167,12 +169,12 @@ public class Interpreter {
         return new CompoundStatement(new VarDeclStatement("v", new IntType()),
                 new CompoundStatement(new VarDeclStatement("a", new RefType(new IntType())),
                         new CompoundStatement(new AssignmentStatement("v", new ValueExpression(new IntValue(10))),
-                        new CompoundStatement(new NewStatement("a", new ValueExpression(new IntValue(22))),
+                        new CompoundStatement(new HeapNewStatement("a", new ValueExpression(new IntValue(22))),
                                 new CompoundStatement(new ForkStatement(
-                                        new CompoundStatement(new WriteHeapStatement("a", new ValueExpression(new IntValue(30))),
+                                        new CompoundStatement(new HeapWriteStatement("a", new ValueExpression(new IntValue(30))),
                                                 new CompoundStatement(new AssignmentStatement("v", new ValueExpression(new IntValue(32))),
-                                                        new CompoundStatement(new PrintStatement(new VariableExpression("v")), new PrintStatement(new RefExp(new VariableExpression("a"))))))),
-                        new CompoundStatement(new PrintStatement(new VariableExpression("v")), new PrintStatement(new RefExp(new VariableExpression("a"))))
+                                                        new CompoundStatement(new PrintStatement(new VariableExpression("v")), new PrintStatement(new RefExpression(new VariableExpression("a"))))))),
+                        new CompoundStatement(new PrintStatement(new VariableExpression("v")), new PrintStatement(new RefExpression(new VariableExpression("a"))))
                                 )
                         )
                         )
@@ -187,7 +189,7 @@ public class Interpreter {
                 new CompoundStatement(
                         new VarDeclStatement("v", new IntType()),
                         new CompoundStatement(
-                                new NewStatement("a", new ValueExpression(new IntValue(10))),
+                                new HeapNewStatement("a", new ValueExpression(new IntValue(10))),
                                 new CompoundStatement(
                                         new ForkStatement(
                                                 new CompoundStatement(
@@ -195,8 +197,8 @@ public class Interpreter {
                                                         new CompoundStatement(
                                                                 new ForkStatement(
                                                                         new CompoundStatement(
-                                                                                new WriteHeapStatement("a", new ValueExpression(new IntValue(40))),
-                                                                                new PrintStatement(new RefExp(new VariableExpression("a")))
+                                                                                new HeapWriteStatement("a", new ValueExpression(new IntValue(40))),
+                                                                                new PrintStatement(new RefExpression(new VariableExpression("a")))
                                                                         )
                                                                 ),
                                                                 new PrintStatement(new VariableExpression("v"))
@@ -207,7 +209,7 @@ public class Interpreter {
                                                 new AssignmentStatement("v", new ValueExpression(new IntValue(30))),
                                                 new CompoundStatement(
                                                         new PrintStatement(new VariableExpression("v")),
-                                                        new PrintStatement(new RefExp(new VariableExpression("a"))
+                                                        new PrintStatement(new RefExpression(new VariableExpression("a"))
                                                         )
                                                 )
                                         )
@@ -224,7 +226,7 @@ public class Interpreter {
                 new CompoundStatement(
                         new AssignmentStatement("varf", new ValueExpression(new StringValue("test.in"))),
                         new CompoundStatement(
-                                new OpenRFile(new VariableExpression("varf")),
+                                new OpenRFileStatement(new VariableExpression("varf")),
                                 new CompoundStatement(
                                         new ForkStatement(
                                                 new CompoundStatement(
@@ -241,7 +243,7 @@ public class Interpreter {
                                                         new ReadFile(new VariableExpression("varf"), "varc"),
                                                         new CompoundStatement(
                                                                 new PrintStatement(new VariableExpression("varc")),
-                                                                new CloseRFile(new VariableExpression("varf"))
+                                                                new CloseRFileStatement(new VariableExpression("varf"))
                                                         )
                                                 )
                                         )
@@ -249,6 +251,12 @@ public class Interpreter {
                         )
                 )
         );
+    }
+
+    private static IStatement createExample13() {
+        // int v; int v;
+        return new CompoundStatement(new VarDeclStatement("v", new IntType()), new VarDeclStatement("v", new IntType()));
+
     }
 
     private static ProgramState createProgram(IStatement originalProgram){
@@ -261,7 +269,14 @@ public class Interpreter {
         return new ProgramState(stack, symTable, output, originalProgram, fileTable, heap);
     }
 
-    private static Controller createController(IStatement statement, String logFilePath) {
+    private static Controller createController(String exampleNumber, IStatement statement, String logFilePath) {
+        try {
+            statement.typeCheck(new MyDictionary<>());
+        } catch (IStatementException | IExpressionException e) {
+            System.out.println("Example " + exampleNumber + ": " + e.getMessage());
+            return null;
+        }
+
         ProgramState state = createProgram(statement);
         IRepository repo = new Repository(state, logFilePath);
 
@@ -271,20 +286,28 @@ public class Interpreter {
     public static void main(String[] args) {
         TextMenu menu = new TextMenu();
 
-        menu.addCommand(new RunExample("1", createExample1(), createController(createExample1(), "log1.txt")));
-        menu.addCommand(new RunExample("2", createExample2(), createController(createExample2(), "log2.txt")));
-        menu.addCommand(new RunExample("3", createExample3(), createController(createExample3(), "log3.txt")));
-        menu.addCommand(new RunExample("4", createExample4(), createController(createExample4(), "log4.txt")));
-        menu.addCommand(new RunExample("5", createExample5(), createController(createExample5(), "log5.txt")));
-        menu.addCommand(new RunExample("6", createExample6(), createController(createExample6(), "log6.txt")));
-        menu.addCommand(new RunExample("7", createExample7(), createController(createExample7(), "log7.txt")));
-        menu.addCommand(new RunExample("8", createExample8(), createController(createExample8(), "log8.txt")));
-        menu.addCommand(new RunExample("9", createExample9(), createController(createExample9(), "log9.txt")));
-        menu.addCommand(new RunExample("10", createExample10(), createController(createExample10(), "log10.txt")));
-        menu.addCommand(new RunExample("11", createExample11(), createController(createExample11(), "log11.txt")));
-        menu.addCommand(new RunExample("12", createExample12(), createController(createExample12(), "log12.txt")));
+        addExampleToMenu(menu, "1", createExample1(), "log1.txt");
+        addExampleToMenu(menu, "2", createExample2(), "log2.txt");
+        addExampleToMenu(menu, "3", createExample3(), "log3.txt");
+        addExampleToMenu(menu, "4", createExample4(), "log4.txt");
+        addExampleToMenu(menu, "5", createExample5(), "log5.txt");
+        addExampleToMenu(menu, "6", createExample6(), "log6.txt");
+        addExampleToMenu(menu, "7", createExample7(), "log7.txt");
+        addExampleToMenu(menu, "8", createExample8(), "log8.txt");
+        addExampleToMenu(menu, "9", createExample9(), "log9.txt");
+        addExampleToMenu(menu, "10", createExample10(), "log10.txt");
+        addExampleToMenu(menu, "11", createExample11(), "log11.txt");
+        addExampleToMenu(menu, "12", createExample12(), "log12.txt");
+        addExampleToMenu(menu, "13", createExample13(), "log13.txt");
         menu.addCommand(new ExitCommand("0", "Exit"));
 
         menu.show();
+    }
+
+    private static void addExampleToMenu(TextMenu menu, String key, IStatement statement, String logFilePath) {
+        Controller controller = createController(key, statement, logFilePath);
+        if (controller != null) {
+            menu.addCommand(new RunExample(key, statement, controller));
+        }
     }
 }

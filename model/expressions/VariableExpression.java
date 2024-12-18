@@ -3,7 +3,9 @@ package model.expressions;
 import adt.myDictionary.MyIDictionary;
 import adt.myHeap.MyIHeap;
 import exceptions.AdtException;
+import exceptions.IExpressionException;
 import exceptions.MyException;
+import model.types.IType;
 import model.values.IValue;
 
 public class VariableExpression implements IExpression{
@@ -24,6 +26,11 @@ public class VariableExpression implements IExpression{
         } else {
             throw new MyException("!EXCEPTION! The variable " + this.id + " is not defined");
         }
+    }
+
+    @Override
+    public IType typeCheck(MyIDictionary<String, IType> typeEnv) throws IExpressionException {
+        return typeEnv.lookup(id);
     }
 
     @Override

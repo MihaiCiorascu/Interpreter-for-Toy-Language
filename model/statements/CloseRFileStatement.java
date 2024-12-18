@@ -7,24 +7,26 @@ import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
+import model.types.IType;
 import model.types.StringType;
 import model.values.IValue;
 import model.values.StringValue;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 
-public class CloseRFile implements IStatement{
-    private IExpression exp;
+public class CloseRFileStatement implements IStatement{
+    private IExpression expression;
 
-    public CloseRFile(IExpression exp){
-        this.exp = exp;
+    public CloseRFileStatement(IExpression exp){
+        this.expression = exp;
     }
 
     @Override
     public ProgramState execute(ProgramState prg) throws IStatementException {
         IValue value;
         try {
-            value = exp.eval(prg.getSymTable(), prg.getHeap());
+            value = expression.eval(prg.getSymTable(), prg.getHeap());
         } catch (IExpressionException | MyException e) {
             throw new IStatementException(e.getMessage());
         }
@@ -45,7 +47,7 @@ public class CloseRFile implements IStatement{
 
         try {
             br.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new IStatementException("!EXCEPTION! Error closing the file: " + e.getMessage());
         }
 
@@ -55,12 +57,23 @@ public class CloseRFile implements IStatement{
     }
 
     @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws IStatementException {
+        IType expressionType = expression.typeCheck(typeEnv);
+        if (expressionType instanceof StringType) {
+            return typeEnv;
+        }
+        else{
+            throw new IStatementException("Close File Statement Error: Argument provided is not a string");
+        }
+    }
+
+    @Override
     public IStatement deepCopy() {
-        return new CloseRFile(exp.deepCopy());
+        return new CloseRFileStatement(expression.deepCopy());
     }
 
     @Override
     public String toString() {
-        return "closeRFile(" + exp.toString() + ")";
+        return "closeRFile(" + expression.toString() + ")";
     }
 }

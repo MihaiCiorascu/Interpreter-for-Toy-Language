@@ -1,5 +1,6 @@
 package model.statements;
 
+import adt.myDictionary.MyIDictionary;
 import exceptions.AdtException;
 import exceptions.IExpressionException;
 import exceptions.IStatementException;
@@ -11,11 +12,11 @@ import model.types.RefType;
 import model.values.IValue;
 import model.values.RefValue;
 
-public class NewStatement implements IStatement{
+public class HeapNewStatement implements IStatement{
     String varName;
     IExpression expression;
 
-    public NewStatement(String varName, IExpression expression){
+    public HeapNewStatement(String varName, IExpression expression){
         this.varName = varName;
         this.expression = expression;
     }
@@ -54,8 +55,19 @@ public class NewStatement implements IStatement{
     }
 
     @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws IStatementException{
+        IType typeVar = typeEnv.lookup(varName);
+        IType typeExp = expression.typeCheck(typeEnv);
+        if (typeVar.equals(new RefType(typeExp))) {
+            return typeEnv;
+        }
+        else
+            throw new IStatementException("!New Statement error! Different types found");
+    }
+
+    @Override
     public IStatement deepCopy() {
-        return new NewStatement(varName, expression.deepCopy());
+        return new HeapNewStatement(varName, expression.deepCopy());
     }
 
     @Override

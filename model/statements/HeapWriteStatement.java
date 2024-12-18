@@ -1,20 +1,22 @@
 package model.statements;
 
+import adt.myDictionary.MyIDictionary;
 import exceptions.AdtException;
 import exceptions.IExpressionException;
 import exceptions.IStatementException;
 import exceptions.MyException;
 import model.ProgramState;
 import model.expressions.IExpression;
+import model.types.IType;
 import model.types.RefType;
 import model.values.IValue;
 import model.values.RefValue;
 
-public class WriteHeapStatement implements IStatement{
+public class HeapWriteStatement implements IStatement{
     private String varName;
     private IExpression expression;
 
-    public WriteHeapStatement(String varName, IExpression expression){
+    public HeapWriteStatement(String varName, IExpression expression){
         this.varName = varName;
         this.expression = expression;
     }
@@ -57,8 +59,25 @@ public class WriteHeapStatement implements IStatement{
     }
 
     @Override
+    public MyIDictionary<String, IType> typeCheck(MyIDictionary<String, IType> typeEnv) throws IStatementException {
+        IType valueType = typeEnv.lookup(varName);
+        IType expressionType = expression.typeCheck(typeEnv);
+        if(valueType instanceof RefType){
+            if(expressionType.equals(((RefType)valueType).getInner())){
+                return typeEnv;
+            }
+            else{
+                throw new IStatementException("Heap Writing: Different type found");
+            }
+        }
+        else {
+            throw new IStatementException("Heap Writing Error: Not a reference");
+        }
+    }
+
+    @Override
     public IStatement deepCopy() {
-        return new WriteHeapStatement(this.varName, this.expression.deepCopy());
+        return new HeapWriteStatement(this.varName, this.expression.deepCopy());
     }
 
     @Override
