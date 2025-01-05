@@ -1,0 +1,1089 @@
+
+ProgramState{
+Program id: 10
+ExeStack:
+Ref(integer) a
+(integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a)))))))
+--------------------------------------
+
+SymTable:
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+integer v
+(NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))
+--------------------------------------
+Ref(integer) a
+--------------------------------------
+
+SymTable:
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+integer v
+(NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))
+--------------------------------------
+Ref(integer) a
+--------------------------------------
+
+SymTable:
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+integer v
+(NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))
+--------------------------------------
+
+SymTable:
+a -> RefValue(0, integer)
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+integer v
+(NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))
+--------------------------------------
+
+SymTable:
+a -> RefValue(0, integer)
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+NewStmt(a, 10)
+(Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a)))))
+--------------------------------------
+integer v
+--------------------------------------
+
+SymTable:
+a -> RefValue(0, integer)
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+NewStmt(a, 10)
+(Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a)))))
+--------------------------------------
+integer v
+--------------------------------------
+
+SymTable:
+a -> RefValue(0, integer)
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+NewStmt(a, 10)
+(Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a)))))
+--------------------------------------
+
+SymTable:
+a -> RefValue(0, integer)
+v -> 0
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+NewStmt(a, 10)
+(Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a)))))
+--------------------------------------
+
+SymTable:
+a -> RefValue(0, integer)
+v -> 0
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+(v = 30; (print(v); print(RefExp(a))))
+--------------------------------------
+NewStmt(a, 10)
+--------------------------------------
+
+SymTable:
+a -> RefValue(0, integer)
+v -> 0
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+(v = 30; (print(v); print(RefExp(a))))
+--------------------------------------
+NewStmt(a, 10)
+--------------------------------------
+
+SymTable:
+a -> RefValue(0, integer)
+v -> 0
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+(v = 30; (print(v); print(RefExp(a))))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+(v = 30; (print(v); print(RefExp(a))))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+v = 30
+(print(v); print(RefExp(a)))
+--------------------------------------
+Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+v = 30
+(print(v); print(RefExp(a)))
+--------------------------------------
+Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+v = 30
+(print(v); print(RefExp(a)))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 12
+ExeStack:
+v = 20
+(Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+v = 30
+(print(v); print(RefExp(a)))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 12
+ExeStack:
+v = 20
+(Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+print(v)
+print(RefExp(a))
+--------------------------------------
+v = 30
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 12
+ExeStack:
+Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
+print(v)
+--------------------------------------
+v = 20
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+print(v)
+print(RefExp(a))
+--------------------------------------
+v = 30
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 12
+ExeStack:
+Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
+print(v)
+--------------------------------------
+v = 20
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 0
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+print(v)
+print(RefExp(a))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 30
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 12
+ExeStack:
+Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
+print(v)
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+print(v)
+print(RefExp(a))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 30
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 12
+ExeStack:
+Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
+print(v)
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+print(RefExp(a))
+--------------------------------------
+print(v)
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 30
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 12
+ExeStack:
+print(v)
+--------------------------------------
+Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+print(RefExp(a))
+--------------------------------------
+print(v)
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 30
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 12
+ExeStack:
+print(v)
+--------------------------------------
+Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+print(RefExp(a))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 30
+
+Heap:
+1 -> 10
+
+Out:
+30
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 12
+ExeStack:
+print(v)
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+30
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 13
+ExeStack:
+WriteHeapStmt(a, 40)
+print(RefExp(a))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+30
+
+OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+print(RefExp(a))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 30
+
+Heap:
+1 -> 10
+
+Out:
+30
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 12
+ExeStack:
+print(v)
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+30
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 13
+ExeStack:
+WriteHeapStmt(a, 40)
+print(RefExp(a))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+30
+
+OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 10
+ExeStack:
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 30
+
+Heap:
+1 -> 10
+
+Out:
+30
+20
+10
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 12
+ExeStack:
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+30
+20
+10
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 13
+ExeStack:
+print(RefExp(a))
+--------------------------------------
+WriteHeapStmt(a, 40)
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+30
+20
+10
+
+OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 13
+ExeStack:
+print(RefExp(a))
+--------------------------------------
+WriteHeapStmt(a, 40)
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+30
+20
+10
+
+OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 13
+ExeStack:
+print(RefExp(a))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 40
+
+Out:
+30
+20
+10
+
+OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 13
+ExeStack:
+print(RefExp(a))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 40
+
+Out:
+30
+20
+10
+
+OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 13
+ExeStack:
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 40
+
+Out:
+30
+20
+10
+40
+
+OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))
+FileTable:
+
+}
+
+
+
