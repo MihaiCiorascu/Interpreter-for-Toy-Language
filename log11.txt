@@ -1,6 +1,6 @@
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 Ref(integer) a
 (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a)))))))
@@ -22,7 +22,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 integer v
 (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))
@@ -46,7 +46,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 integer v
 (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))
@@ -70,7 +70,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 integer v
 (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))
@@ -93,7 +93,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 integer v
 (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))
@@ -116,7 +116,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 NewStmt(a, 10)
 (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a)))))
@@ -141,7 +141,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 NewStmt(a, 10)
 (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a)))))
@@ -166,7 +166,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 NewStmt(a, 10)
 (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a)))))
@@ -190,7 +190,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 NewStmt(a, 10)
 (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a)))))
@@ -214,7 +214,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
 (v = 30; (print(v); print(RefExp(a))))
@@ -240,7 +240,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
 (v = 30; (print(v); print(RefExp(a))))
@@ -266,7 +266,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
 (v = 30; (print(v); print(RefExp(a))))
@@ -290,7 +290,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
 (v = 30; (print(v); print(RefExp(a))))
@@ -314,7 +314,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 v = 30
 (print(v); print(RefExp(a)))
@@ -340,7 +340,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 v = 30
 (print(v); print(RefExp(a)))
@@ -366,7 +366,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 v = 30
 (print(v); print(RefExp(a)))
@@ -390,7 +390,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 12
+Program id: 1
 ExeStack:
 v = 20
 (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))
@@ -414,7 +414,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 v = 30
 (print(v); print(RefExp(a)))
@@ -438,7 +438,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 12
+Program id: 1
 ExeStack:
 v = 20
 (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))
@@ -462,7 +462,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 print(v)
 print(RefExp(a))
@@ -488,7 +488,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 12
+Program id: 1
 ExeStack:
 Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
 print(v)
@@ -514,7 +514,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 print(v)
 print(RefExp(a))
@@ -540,7 +540,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 12
+Program id: 1
 ExeStack:
 Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
 print(v)
@@ -566,7 +566,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 print(v)
 print(RefExp(a))
@@ -590,7 +590,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 12
+Program id: 1
 ExeStack:
 Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
 print(v)
@@ -614,7 +614,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 print(v)
 print(RefExp(a))
@@ -638,7 +638,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 12
+Program id: 1
 ExeStack:
 Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
 print(v)
@@ -662,7 +662,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 print(RefExp(a))
 --------------------------------------
@@ -687,57 +687,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 12
-ExeStack:
-print(v)
---------------------------------------
-Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
---------------------------------------
-
-SymTable:
-a -> RefValue(1, integer)
-v -> 20
-
-Heap:
-1 -> 10
-
-Out:
-
-OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
-FileTable:
-
-}
-
-
-
-
-ProgramState{
-Program id: 10
-ExeStack:
-print(RefExp(a))
---------------------------------------
-print(v)
---------------------------------------
-
-SymTable:
-a -> RefValue(1, integer)
-v -> 30
-
-Heap:
-1 -> 10
-
-Out:
-
-OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
-FileTable:
-
-}
-
-
-
-
-ProgramState{
-Program id: 12
+Program id: 1
 ExeStack:
 print(v)
 --------------------------------------
@@ -762,7 +712,57 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
+ExeStack:
+print(RefExp(a))
+--------------------------------------
+print(v)
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 30
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 1
+ExeStack:
+print(v)
+--------------------------------------
+Fork: (WriteHeapStmt(a, 40); print(RefExp(a)))
+--------------------------------------
+
+SymTable:
+a -> RefValue(1, integer)
+v -> 20
+
+Heap:
+1 -> 10
+
+Out:
+
+OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 0
 ExeStack:
 print(RefExp(a))
 --------------------------------------
@@ -786,7 +786,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 12
+Program id: 1
 ExeStack:
 print(v)
 --------------------------------------
@@ -810,7 +810,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 13
+Program id: 2
 ExeStack:
 WriteHeapStmt(a, 40)
 print(RefExp(a))
@@ -835,7 +835,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 print(RefExp(a))
 --------------------------------------
@@ -859,7 +859,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 12
+Program id: 1
 ExeStack:
 print(v)
 --------------------------------------
@@ -883,7 +883,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 13
+Program id: 2
 ExeStack:
 WriteHeapStmt(a, 40)
 print(RefExp(a))
@@ -908,7 +908,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 10
+Program id: 0
 ExeStack:
 
 SymTable:
@@ -920,8 +920,8 @@ Heap:
 
 Out:
 30
-20
 10
+20
 
 OriginalProgram: (Ref(integer) a; (integer v; (NewStmt(a, 10); (Fork: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v))); (v = 30; (print(v); print(RefExp(a))))))))
 FileTable:
@@ -932,7 +932,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 12
+Program id: 1
 ExeStack:
 
 SymTable:
@@ -944,8 +944,8 @@ Heap:
 
 Out:
 30
-20
 10
+20
 
 OriginalProgram: (v = 20; (Fork: (WriteHeapStmt(a, 40); print(RefExp(a))); print(v)))
 FileTable:
@@ -956,7 +956,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 13
+Program id: 2
 ExeStack:
 print(RefExp(a))
 --------------------------------------
@@ -972,8 +972,8 @@ Heap:
 
 Out:
 30
-20
 10
+20
 
 OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))
 FileTable:
@@ -984,7 +984,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 13
+Program id: 2
 ExeStack:
 print(RefExp(a))
 --------------------------------------
@@ -1000,8 +1000,8 @@ Heap:
 
 Out:
 30
-20
 10
+20
 
 OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))
 FileTable:
@@ -1012,7 +1012,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 13
+Program id: 2
 ExeStack:
 print(RefExp(a))
 --------------------------------------
@@ -1026,8 +1026,8 @@ Heap:
 
 Out:
 30
-20
 10
+20
 
 OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))
 FileTable:
@@ -1038,7 +1038,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 13
+Program id: 2
 ExeStack:
 print(RefExp(a))
 --------------------------------------
@@ -1052,8 +1052,8 @@ Heap:
 
 Out:
 30
-20
 10
+20
 
 OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))
 FileTable:
@@ -1064,7 +1064,7 @@ FileTable:
 
 
 ProgramState{
-Program id: 13
+Program id: 2
 ExeStack:
 
 SymTable:
@@ -1076,8 +1076,8 @@ Heap:
 
 Out:
 30
-20
 10
+20
 40
 
 OriginalProgram: (WriteHeapStmt(a, 40); print(RefExp(a)))

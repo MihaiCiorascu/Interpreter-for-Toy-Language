@@ -1,0 +1,132 @@
+
+ProgramState{
+Program id: 0
+ExeStack:
+integer v
+integer v
+--------------------------------------
+
+SymTable:
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (integer v; integer v)
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 0
+ExeStack:
+integer v
+--------------------------------------
+integer v
+--------------------------------------
+
+SymTable:
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (integer v; integer v)
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 0
+ExeStack:
+integer v
+--------------------------------------
+integer v
+--------------------------------------
+
+SymTable:
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (integer v; integer v)
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 0
+ExeStack:
+integer v
+--------------------------------------
+
+SymTable:
+v -> 0
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (integer v; integer v)
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 0
+ExeStack:
+integer v
+--------------------------------------
+
+SymTable:
+v -> 0
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (integer v; integer v)
+FileTable:
+
+}
+
+
+
+
+ProgramState{
+Program id: 0
+ExeStack:
+
+SymTable:
+v -> 0
+
+Heap:
+(the heap is empty)
+
+Out:
+
+OriginalProgram: (integer v; integer v)
+FileTable:
+
+}
+
+
+
