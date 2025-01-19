@@ -1,25 +1,24 @@
-# Interpreter-for-Toy-Language
-Our mini interpreter uses three main structures:
+# Toy Language Interpreter
 
+This project is an interpreter for a Toy Programming Language, implemented in **Java** using the **Model-View-Controller (MVC)** architectural pattern.
 
-### Execution Stack (ExeStack)
-A stack of statements to execute the current program.
+## Features
 
-### Table of Symbols (SymTable)
-A table that keeps the variables' values.
+- **Toy Language Support**:
+  - Variable declarations, assignments, arithmetic and logical expressions, conditionals, loops, and file operations.
+  - Reference types, heap management, and garbage collection.
+  - Concurrent execution through thread management.
 
-### Output (Out)
-Keeps all messages printed by the toy program.
+- **Type Checker**:
+  - Validates program type correctness before execution.
 
+- **Graphical User Interface**:
+  - Built with **JavaFX**, featuring program selection, heap and stack visualization, symbol tables, and runtime program management.
 
-All these three main structures denote the program state (**PrgState**).  
-Our interpreter can execute multiple programs, each with a different **PrgState** (different **ExeStack**, **SymTable**, and **Out**).
+## Tools and Techniques Used
 
-At the beginning:
-- **ExeStack** contains the original program.
-- **SymTable** and **Out** are empty.
-
-During evaluation:
-- **ExeStack** holds the remaining program to evaluate.
-- **SymTable** contains evaluated variables with their assigned values.
-- **Out** accumulates printed values.
+- **Java Collections**: Generic implementations for stacks, dictionaries, and lists.
+- **File Handling**: Operations for reading and writing files during execution.
+- **Concurrency**: Managed through thread-based execution with a shared heap.
+- **Garbage Collection**: Implementation of safe memory management.
+- **JavaFX GUI**: Interactive interface for managing and visualizing program state.
